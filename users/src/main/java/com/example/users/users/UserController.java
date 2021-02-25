@@ -8,8 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @GetMapping("/users/{id}")
-    public UserResponse getUserById(@PathVariable int id) {
-        UserResponse userResponse = new UserResponse(id, "Jengweb", "jengweb@gmail.com");
+    public UserResponse getUserById(@PathVariable String id) {
+        int _id = -1;
+        try {
+            _id = Integer.parseInt(id);
+        } catch (Exception e) {
+            throw new UserInputInvalidException("Invalid id with " + id);
+        }
+
+        UserResponse userResponse = new UserResponse(_id, "Jengweb", "jengweb@gmail.com");
         return userResponse;
     }
 }
