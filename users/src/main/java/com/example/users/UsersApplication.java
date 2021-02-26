@@ -12,14 +12,14 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 public class UsersApplication {
 
-//	@Autowired
-//	private UserRepository userRepository;
-//
-//	@PostConstruct
-//	public void initialData() {
-//		TableUser tableUser = new TableUser(1, "Jengweb", "jengweb@gmail.com");
-//		userRepository.save(tableUser);
-//	}
+	@Autowired
+	private UserRepository userRepository;
+
+	@PostConstruct
+	public void initialData() {
+		TableUser tableUser = new TableUser(1, "Jengweb", "jengweb@gmail.com");
+		userRepository.save(tableUser);
+	}
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context
