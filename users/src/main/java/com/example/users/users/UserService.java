@@ -11,12 +11,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserGateway userGateway;
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     public UserResponse findUserById(int id) {
         Optional<TableUser> result = userRepository.findById(id);
+//        Optional<UserResponse> result = userGateway.getUserById(id);
         if (result.isPresent()) {
             UserResponse userResponse = new UserResponse(result.get().getId(), result.get().getName(), result.get().getEmail());
             return userResponse;

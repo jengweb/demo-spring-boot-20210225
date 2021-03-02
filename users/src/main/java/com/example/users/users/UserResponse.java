@@ -5,6 +5,9 @@ public class UserResponse {
     private String name;
     private String email;
 
+    public UserResponse() {
+    }
+
     public UserResponse(int id, String name, String email) {
         this.id = id;
         this.name = name;
