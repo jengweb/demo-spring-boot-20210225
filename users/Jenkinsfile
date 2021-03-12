@@ -1,12 +1,14 @@
 pipeline {
   agent any
   stages {
-      stage('SonarQube analysis 1') {
+      stage('SonarQube analysis') {
           steps {
-              sh 'mvn clean package sonar:sonar -Dsonar.projectKey=Users-Spring-Boot -Dsonar.host.url=http://localhost:9000 -Dsonar.login=848b05cbc78baac42f4b48bb379f4eabcd8f77ee'
+              withMaven(maven:'Maven3.6.3') {
+                  sh 'mvn clean package sonar:sonar -Dsonar.projectKey=Users-Spring-Boot -Dsonar.host.url=http://localhost:9000 -Dsonar.login=848b05cbc78baac42f4b48bb379f4eabcd8f77ee'
+              }
           }
       }
-      stage("Quality Gate 1") {
+      stage("Quality Gate") {
           steps {
               waitForQualityGate abortPipeline: true
           }
